@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Layout, Input, Affix } from 'antd';
 import './App.css';
 import { Shelves, Book } from './lib/types';
-import { update } from './BooksAPI';
+import { update, getAll } from './BooksAPI';
 import { Shelf } from './sections/Shelf/Shelf';
 import { GithubOutlined, LinkedinFilled } from '@ant-design/icons';
 
@@ -11,37 +11,19 @@ const { Search } = Input;
 
 function App() {
   const [state, setState] = useState<Shelves>({
-    currentlyReading: { shelfName: 'currentlyReading', books: [] },
-    wantToRead: { shelfName: 'wantToRead', books: [] },
-    read: { shelfName: 'read', books: [] },
+    shelves: [ { shelfName: 'Currently Reading', books:[] }, { shelfName: 'Want To Read', books:[] }, { shelfName: 'Read', books:[] } ]
   });
 
   const onMoveBook = (book: Book, shelfName: string) => {
-    setState({
-      currentlyReading:
-        shelfName === state.currentlyReading.shelfName
-          ? {
-              ...state.currentlyReading,
-              books: [...state.currentlyReading.books, book],
-            }
-          : { ...state.currentlyReading },
-      wantToRead:
-        shelfName === state.wantToRead.shelfName
-          ? {
-              ...state.wantToRead,
-              books: [...state.wantToRead.books, book],
-            }
-          : { ...state.wantToRead },
-      read:
-        shelfName === state.read.shelfName
-          ? {
-              ...state.read,
-              books: [...state.read.books],
-            }
-          : { ...state.read },
-    });
     update({ book }, shelfName);
   };
+
+  const onGetAll = async () => {
+    const data = await getAll();
+    console.log(data[0])
+  }
+
+  onGetAll();
 
   return (
     <Layout className="container layout">
@@ -57,9 +39,9 @@ function App() {
         </Header>
       </Affix>
       <Content className="content">
-        <Shelf />
-        <Shelf />
-        <Shelf />
+        {state.shelves.map( shelf => (
+          <Shelf shelf={shelf} />
+        ))}
       </Content>
       <Footer className="footer-author-description">
         <span>Created by Praveen Sripati </span>

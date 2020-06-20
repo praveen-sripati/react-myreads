@@ -8,7 +8,5 @@ export interface Shelf {
 }
 
 export interface Shelves {
-  currentlyReading: Shelf;
-  wantToRead: Shelf;
-  read: Shelf;
+  shelves: Shelf[];
 }

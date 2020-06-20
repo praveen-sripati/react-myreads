@@ -46,7 +46,8 @@ export const Book = () => {
           />
         }
       >
-        <Meta title="Card title" description="something just like this"></Meta>
+        <Meta className="book-title-bottom book-description" title="Card title" description="something just like this"></Meta>
+        <span className="book-author-text-color">by Authon Name</span>
         <Dropdown overlay={menu}>
           <Button
             className="book-card-move-button"
