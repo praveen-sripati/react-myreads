@@ -4,6 +4,7 @@ import './App.css';
 import { Shelves, Book } from './lib/types';
 import { update } from './BooksAPI';
 import { Shelf } from './sections/Shelf/Shelf';
+import { GithubOutlined, LinkedinFilled } from '@ant-design/icons';
 
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
@@ -57,7 +58,18 @@ function App() {
       </Affix>
       <Content className="content">
         <Shelf />
+        <Shelf />
+        <Shelf />
       </Content>
+      <Footer className="footer-author-description">
+        <span>Created by Praveen Sripati </span>
+        <a href="https://github.com/praveen-sripati" target="blank">
+          <GithubOutlined className="footer-author-description__icon" />
+        </a>
+        <a href="https://in.linkedin.com/in/praveen-sripati" target="blank">
+          <LinkedinFilled className="footer-author-description__icon" />
+        </a>
+      </Footer>
     </Layout>
   );
 }

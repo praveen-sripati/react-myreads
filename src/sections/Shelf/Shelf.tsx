@@ -7,15 +7,15 @@ const { Title, Paragraph, Text } = Typography;
 
 export const Shelf = () => {
   return (
-    <div className="currently-reading-content">
-      <Title className="currently-reading-title" level={2}>
+    <div className="shelf-content">
+      <Title className="shelf-title" level={2}>
         Currently Reading
       </Title>
       <Divider className="divider" />
-      <div className="currently-reading-books">
+      <div className="shelf-books">
         <Book />
-        <h2>Book</h2>
-        <h2>Book</h2>
+        <Book />
+        <Book />
       </div>
     </div>
   );

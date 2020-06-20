@@ -49,16 +49,33 @@ body, .app {
 }
 
 
-.currently-reading-content {
+.shelf-content {
   display: flex;
   flex-direction: column;
 }
 
-.currently-reading-books {
+.shelf-books {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
+}
+
+.shelf-books__book {
+  margin: 0 20px 40px 20px;
+}
+
+.footer-author-description {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer-author-description__icon {
+  margin: 0 0 0 10px;
+  font-size: 32px;
 }
 
 .ant-btn-icon-only.ant-btn-lg, .book-card-move-button {
@@ -69,7 +86,7 @@ body, .app {
   height: 50px;
 }
 
-h2.ant-typography, .ant-typography h2 .currently-reading-title {
+h2.ant-typography, .ant-typography h2 .shelf-title {
   margin: 0;
 }
 
