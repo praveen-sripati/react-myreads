@@ -5,52 +5,42 @@ import { TypeBook } from '../../../lib/types';
 
 interface Props {
   book: TypeBook;
+  onMoveBook: (book: TypeBook, shelfName: string) => void;
+}
+
+interface EventObject {
+  key: string;
 }
 
 const { Meta } = Card;
 
-const menu = (
-  <Menu>
-    <Menu.Item>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="http://www.alipay.com/"
-      >
-        1st menu item
-      </a>
-    </Menu.Item>
-    <Menu.Item>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="http://www.taobao.com/"
-      >
-        2nd menu item
-      </a>
-    </Menu.Item>
-    <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-        3rd menu item
-      </a>
-    </Menu.Item>
-    <Menu.Item>None</Menu.Item>
-  </Menu>
-);
+export const Book = ({ book, onMoveBook }: Props) => {
+  const handleMenuClick = (event: EventObject) => {
+    if (event.key === '1') {
+      onMoveBook(book, 'currentlyReading');
+    } else if(event.key === '2') {
+      onMoveBook(book, 'wantToRead');
+    } else {
+      onMoveBook(book, 'read');
+    }
+  };
 
-export const Book = ({ book }: Props) => {
+  const menu = (
+    <Menu onClick={handleMenuClick}>
+      <Menu.Item key="1">Currently Reading</Menu.Item>
+      <Menu.Item key="2">Want to Reading</Menu.Item>
+      <Menu.Item key="3">Read</Menu.Item>
+      <Menu.Item key="4">None</Menu.Item>
+    </Menu>
+  );
+
   return (
     <div className="shelf-books__book">
       <Card
         bordered
         hoverable
-        style={{ width: 240  }}
-        cover={
-          <img
-            alt="example"
-            src={book.imageLinks.thumbnail}
-          />
-        }
+        style={{ width: 240 }}
+        cover={<img alt="example" src={book.imageLinks.thumbnail} />}
       >
         <Meta
           className="book-title-bottom book-description"

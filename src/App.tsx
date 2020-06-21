@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, Input, Affix, Spin } from 'antd';
+import { Layout, Input, Affix } from 'antd';
 import './App.css';
 import { TypeBook, TypeShelves } from './lib/types';
 import { update, getAll } from './BooksAPI';
@@ -17,15 +17,14 @@ function App() {
     read: { shelfName: 'Read', books: null },
   });
 
-  const onGetAll = async () => {
-    const data: TypeBook[] = await getAll();
+  const getAllBooks = async () => {
+    const books: TypeBook[] = await getAll();
 
     const currentlyReadingData: TypeBook[] = [];
     const wantToReadData: TypeBook[] = [];
     const readData: TypeBook[] = [];
 
-    for (const book of data) {
-      console.log(book.shelf);
+    for (const book of books) {
       if (book.shelf === 'currentlyReading') {
         currentlyReadingData.push(book);
       } else if (book.shelf === 'wantToRead') {
@@ -45,13 +44,13 @@ function App() {
     });
   };
 
-  const moveBook = (book: TypeBook, shelfName: string) => {
-    update({ book }, shelfName);
+  const moveBook = async (book: TypeBook, shelfName: string) => {
+    await update( book , shelfName);
   };
 
   useEffect(() => {
-    onGetAll();
-  }, []);
+    getAllBooks();
+  }, [state]);
 
   return (
     <Layout className="container layout">
@@ -67,9 +66,9 @@ function App() {
         </Header>
       </Affix>
       <Content className="content">
-        <Shelf shelf={state.currentlyReading} />
-        <Shelf shelf={state.wantToRead} />
-        <Shelf shelf={state.read} />
+        <Shelf shelf={state.currentlyReading} onMoveBook={moveBook} />
+        <Shelf shelf={state.wantToRead} onMoveBook={moveBook} />
+        <Shelf shelf={state.read} onMoveBook={moveBook} />
       </Content>
       <Footer className="footer-author-description">
         <span>Created by Praveen Sripati </span>
