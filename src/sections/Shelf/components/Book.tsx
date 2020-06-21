@@ -42,6 +42,7 @@ export const Book = ({ book }: Props) => {
   return (
     <div className="shelf-books__book">
       <Card
+        bordered
         hoverable
         style={{ width: 240  }}
         cover={
@@ -56,7 +57,7 @@ export const Book = ({ book }: Props) => {
           title={book.title}
           description={book.subtitle}
         ></Meta>
-        <span className="book-author-text-color">{book.authors[0]}</span>
+        {/* <span className="book-author-text-color">{book.authors[0]}</span> */}
         <Dropdown overlay={menu}>
           <Button
             className="book-card-move-button"

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, Input, Affix } from 'antd';
+import { Layout, Input, Affix, Spin } from 'antd';
 import './App.css';
-import { TypeBook, TypeShelf, TypeShelves } from './lib/types';
+import { TypeBook, TypeShelves } from './lib/types';
 import { update, getAll } from './BooksAPI';
 import { Shelf } from './sections/Shelf/Shelf';
 import { GithubOutlined, LinkedinFilled } from '@ant-design/icons';
-import { Book } from './sections/Shelf/components/Book';
+import { stat } from 'fs';
 
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
@@ -17,42 +17,39 @@ function App() {
     read: { shelfName: 'Read', books: null },
   });
 
-  const onMoveBook = (book: TypeBook, shelfName: string) => {
+  const onGetAll = async () => {
+    const data: TypeBook[] = await getAll();
+
+    const currentlyReadingData: TypeBook[] = [];
+    const wantToReadData: TypeBook[] = [];
+    const readData: TypeBook[] = [];
+
+    for (const book of data) {
+      console.log(book.shelf);
+      if (book.shelf === 'currentlyReading') {
+        currentlyReadingData.push(book);
+      } else if (book.shelf === 'wantToRead') {
+        wantToReadData.push(book);
+      } else {
+        readData.push(book);
+      }
+    }
+
+    setState({
+      currentlyReading: {
+        shelfName: 'Currently Reading',
+        books: currentlyReadingData,
+      },
+      wantToRead: { shelfName: 'Want To Read', books: wantToReadData },
+      read: { shelfName: 'Read', books: readData },
+    });
+  };
+
+  const moveBook = (book: TypeBook, shelfName: string) => {
     update({ book }, shelfName);
   };
 
   useEffect(() => {
-    const onGetAll = async () => {
-      const data: TypeBook[] = await getAll();
-
-      const currentlyReadingData: TypeBook[] = [];
-      const wantToReadData: TypeBook[] = [];
-      const readData: TypeBook[] = [];
-
-      for (const book of data) {
-        console.log(book.shelf);
-        if (book.shelf === "currentlyReading") {
-          currentlyReadingData.push(book);
-        } else if (book.shelf === "wantToRead") {
-          wantToReadData.push(book);
-        } else {
-          readData.push(book);
-        }
-      }
-
-      console.log(currentlyReadingData);
-      console.log(wantToReadData);
-      console.log(readData);
-
-      setState({
-        currentlyReading: {
-          shelfName: 'Currently Reading',
-          books: currentlyReadingData,
-        },
-        wantToRead: { shelfName: 'Want To Read', books: wantToReadData },
-        read: { shelfName: 'Read', books: readData },
-      });
-    };
     onGetAll();
   }, []);
 
