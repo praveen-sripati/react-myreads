@@ -5,6 +5,7 @@ import './App.css';
 import { TypeBook, TypeShelves } from './lib/types';
 import { update, getAll } from './BooksAPI';
 import { Shelf } from './sections/Shelf/Shelf';
+import { SearchList } from './sections/Search/SearchList';
 import {
   GithubOutlined,
   LinkedinFilled,
@@ -29,6 +30,7 @@ function App() {
   const getAllBooks = async () => {
     const books: TypeBook[] = await getAll();
 
+    console.log(books);
     const currentlyReadingData: TypeBook[] = [];
     const wantToReadData: TypeBook[] = [];
     const readData: TypeBook[] = [];
@@ -64,7 +66,9 @@ function App() {
       <Layout className="container layout">
         <Affix>
           <Header className="header">
-            <p className="logo">MyReads</p>
+            <Link to="/">
+              <p className="logo">MyReads</p>
+            </Link>
             <Search
               className="search"
               placeholder="input search text"
@@ -104,7 +108,7 @@ function App() {
           </Route>
           <Route exact path="/search">
             <Content className="content">
-              <h2>Search</h2>
+              <SearchList />
             </Content>
           </Route>
         </Switch>
