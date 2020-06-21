@@ -39,4 +39,5 @@ export interface TypeShelves {
   currentlyReading: TypeShelf;
   wantToRead: TypeShelf;
   read: TypeShelf;
+  loading: boolean;
 }

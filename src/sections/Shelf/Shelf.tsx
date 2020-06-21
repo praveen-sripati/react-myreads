@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Divider } from 'antd';
+import { Typography, Divider, Empty } from 'antd';
 import { Book } from './components/Book';
 import { TypeShelf, TypeBook } from '../../lib/types';
 
@@ -18,7 +18,9 @@ export const Shelf = ({ shelf, onMoveBook }: Props) => {
       </Title>
       <Divider className="divider" />
       <div className="shelf-books">
-        {shelf.books?.map((book) => <Book key={book.id} book={book} onMoveBook={onMoveBook} />)}
+        {shelf.books?.map((book) => (
+          <Book key={book.id} book={book} onMoveBook={onMoveBook} />
+        ))}
       </div>
     </div>
   );

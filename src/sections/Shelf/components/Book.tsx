@@ -20,7 +20,7 @@ export const Book = ({ book, onMoveBook }: Props) => {
       onMoveBook(book, 'currentlyReading');
     } else if(event.key === '2') {
       onMoveBook(book, 'wantToRead');
-    } else {
+    } else if(event.key === '3'){
       onMoveBook(book, 'read');
     }
   };

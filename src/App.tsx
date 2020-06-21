@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Layout, Input, Affix } from 'antd';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Layout, Input, Affix, Spin } from 'antd';
 import './App.css';
 import { TypeBook, TypeShelves } from './lib/types';
 import { update, getAll } from './BooksAPI';
 import { Shelf } from './sections/Shelf/Shelf';
 import { GithubOutlined, LinkedinFilled } from '@ant-design/icons';
-import { stat } from 'fs';
 
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
@@ -15,7 +14,12 @@ function App() {
     currentlyReading: { shelfName: 'Currently Reading', books: null },
     wantToRead: { shelfName: 'Want To Read', books: null },
     read: { shelfName: 'Read', books: null },
+    loading: true,
   });
+
+  useEffect(() => {
+    getAllBooks();
+  }, []);
 
   const getAllBooks = async () => {
     const books: TypeBook[] = await getAll();
@@ -41,16 +45,14 @@ function App() {
       },
       wantToRead: { shelfName: 'Want To Read', books: wantToReadData },
       read: { shelfName: 'Read', books: readData },
+      loading: false,
     });
   };
 
-  const moveBook = async (book: TypeBook, shelfName: string) => {
-    await update( book , shelfName);
-  };
-
-  useEffect(() => {
+  const moveBook = useCallback(async (book: TypeBook, shelfName: string) => {
+    await update(book, shelfName);
     getAllBooks();
-  }, [state]);
+  }, []);
 
   return (
     <Layout className="container layout">
@@ -66,9 +68,15 @@ function App() {
         </Header>
       </Affix>
       <Content className="content">
-        <Shelf shelf={state.currentlyReading} onMoveBook={moveBook} />
-        <Shelf shelf={state.wantToRead} onMoveBook={moveBook} />
-        <Shelf shelf={state.read} onMoveBook={moveBook} />
+        {state.loading ? (
+          <Spin size="large" className="spinner" />
+        ) : (
+          <div>
+            <Shelf shelf={state.currentlyReading} onMoveBook={moveBook} />
+            <Shelf shelf={state.wantToRead} onMoveBook={moveBook} />
+            <Shelf shelf={state.read} onMoveBook={moveBook} />
+          </div>
+        )}
       </Content>
       <Footer className="footer-author-description">
         <span>Created by Praveen Sripati </span>
