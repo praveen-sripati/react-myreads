@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Layout, Input, Affix, Spin } from 'antd';
+import { Layout, Input, Affix, Spin, Button } from 'antd';
 import './App.css';
 import { TypeBook, TypeShelves } from './lib/types';
 import { update, getAll } from './BooksAPI';
 import { Shelf } from './sections/Shelf/Shelf';
-import { GithubOutlined, LinkedinFilled } from '@ant-design/icons';
+import { GithubOutlined, LinkedinFilled, PlusOutlined } from '@ant-design/icons';
 
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
@@ -77,6 +77,19 @@ function App() {
             <Shelf shelf={state.read} onMoveBook={moveBook} />
           </div>
         )}
+        <Button
+          style={{
+            position: "fixed",
+            right: "25px",
+            bottom: "25px",
+            width: "50px",
+            height: "50px"
+          }}
+          type="primary"
+          shape="circle"
+          icon={<PlusOutlined />}
+          size="large"
+        ></Button>
       </Content>
       <Footer className="footer-author-description">
         <span>Created by Praveen Sripati </span>
