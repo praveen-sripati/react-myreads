@@ -45,7 +45,7 @@ export const Book = ({ book, onMoveBook }: Props) => {
         <Meta
           className="book-title-bottom book-description"
           title={book.title}
-          description={book.subtitle}
+          description={book.subtitle ? book.subtitle : book.description.slice(0,50)}
         ></Meta>
         {/* <span className="book-author-text-color">{book.authors[0]}</span> */}
         <Dropdown overlay={menu}>
