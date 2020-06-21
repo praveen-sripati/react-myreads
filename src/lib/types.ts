@@ -1,3 +1,8 @@
+export interface ImageObject {
+  smallThumbnail: string;
+  thumbnail: string;
+}
+
 export interface TypeBook {
   allowAnonLogging: boolean;
   authors: string[];
@@ -7,7 +12,7 @@ export interface TypeBook {
   contentVersion: string;
   description: string;
   id: string;
-  imageLinks: Object;
+  imageLinks: ImageObject;
   industryIdentifiers: Object[];
   infoLink: string;
   language: string;
@@ -35,5 +40,3 @@ export interface TypeShelves {
   wantToRead: TypeShelf;
   read: TypeShelf;
 }
-
-

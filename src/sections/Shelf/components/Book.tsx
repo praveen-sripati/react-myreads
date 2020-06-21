@@ -1,6 +1,11 @@
 import React from 'react';
 import { Card, Button, Menu, Dropdown } from 'antd';
 import { DownCircleFilled } from '@ant-design/icons';
+import { TypeBook } from '../../../lib/types';
+
+interface Props {
+  book: TypeBook;
+}
 
 const { Meta } = Card;
 
@@ -33,21 +38,25 @@ const menu = (
   </Menu>
 );
 
-export const Book = () => {
+export const Book = ({ book }: Props) => {
   return (
     <div className="shelf-books__book">
       <Card
         hoverable
-        style={{ width: 240 }}
+        style={{ width: 240  }}
         cover={
           <img
             alt="example"
-            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+            src={book.imageLinks.thumbnail}
           />
         }
       >
-        <Meta className="book-title-bottom book-description" title="Card title" description="something just like this"></Meta>
-        <span className="book-author-text-color">by Authon Name</span>
+        <Meta
+          className="book-title-bottom book-description"
+          title={book.title}
+          description={book.subtitle}
+        ></Meta>
+        <span className="book-author-text-color">{book.authors[0]}</span>
         <Dropdown overlay={menu}>
           <Button
             className="book-card-move-button"

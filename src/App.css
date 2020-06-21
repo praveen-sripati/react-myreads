@@ -15,7 +15,7 @@ body, .app {
 /* main page */
 
 .layout {
-  background-color: white;
+  background-color: whitesmoke;
 }
 
 .header {
@@ -41,6 +41,7 @@ body, .app {
 }
 
 .content {
+  background-color: whitesmoke;
   padding: 50px 40px;
 }
 
@@ -63,6 +64,10 @@ body, .app {
 
 .shelf-books__book {
   margin: 0 20px 40px 20px;
+}
+
+.ant-card-body {
+  background-color: #32CD32;
 }
 
 .footer-author-description {
