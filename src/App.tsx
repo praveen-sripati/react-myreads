@@ -136,7 +136,7 @@ function App() {
           <Route exact path="/search">
             <SearchList />
           </Route>
-          <Route exact path="/book">
+          <Route exact path="/book/:id">
             <BookPage book={showBookState.book} />
           </Route>
         </Switch>

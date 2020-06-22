@@ -28,7 +28,6 @@ export const Book = ({ book, onMoveBook, showBook }: Props) => {
         event.target.localName === 'li'
       )
     ) {
-      console.log(event);
       setClickCard({ isClicked: true });
       showBook(book);
     }
@@ -90,6 +89,6 @@ export const Book = ({ book, onMoveBook, showBook }: Props) => {
   );
 
   return (
-  <div>{JSON.stringify(clickCard.isClicked)}{clickCard.isClicked ? <Redirect push to="/book">{card}</Redirect> : card}</div>
+  <div>{clickCard.isClicked ? <Redirect push to={`/book/${book.id}`}>{card}</Redirect> : card}</div>
   );
 };
