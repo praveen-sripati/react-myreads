@@ -4,11 +4,10 @@ import {
   Switch,
   Route,
   Link,
-  Redirect,
 } from 'react-router-dom';
 import { Layout, Input, Affix, Spin, Button } from 'antd';
 import './App.css';
-import { TypeBook, TypeShelves, showBookState } from './lib/types';
+import { TypeBook, TypeShelves, ShowBookState, SearchState } from './lib/types';
 import { update, getAll } from './BooksAPI';
 import { Shelf } from './sections/Shelf/Shelf';
 import { SearchList } from './sections/Search/SearchList';
@@ -30,9 +29,11 @@ function App() {
     loading: true,
   });
 
-  const [showBookState, setShowBookState] = useState<showBookState>({
+  const [showBookState, setShowBookState] = useState<ShowBookState>({
     book: null,
   });
+
+  const [searchState, setSearchState] = useState<SearchState>({query:''});
 
   useEffect(() => {
     getAllBooks();
@@ -84,12 +85,14 @@ function App() {
             <Link to="/">
               <p className="logo">MyReads</p>
             </Link>
-            <Search
-              className="search"
-              placeholder="input search text"
-              enterButton="Search"
-              size="large"
-            ></Search>
+            <Link to="/search" className="search-link">
+              <Search
+                className="search"
+                placeholder="search books here..."
+                enterButton="Search"
+                size="large"
+              ></Search>
+            </Link>
           </Header>
         </Affix>
         <Switch>

@@ -43,6 +43,15 @@ body,
   margin: auto 0;
 }
 
+.search-link {
+  display: flex;
+  min-width: 500px;
+}
+
+.search-content {
+  height: 85vh;
+}
+
 .content {
   padding: 50px 40px;
 }

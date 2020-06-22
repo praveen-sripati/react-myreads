@@ -42,6 +42,10 @@ export interface TypeShelves {
   loading: boolean;
 }
 
-export interface showBookState {
+export interface ShowBookState {
   book: TypeBook | null;
+}
+
+export interface SearchState{
+  query: '';
 }
