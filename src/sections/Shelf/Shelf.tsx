@@ -9,9 +9,10 @@ const { Title, Text } = Typography;
 interface Props {
   shelf: TypeShelf;
   onMoveBook: (book: TypeBook, shelfName: string) => void;
+  showBook: (book: TypeBook) => void;
 }
 
-export const Shelf = ({ shelf, onMoveBook }: Props) => {
+export const Shelf = ({ shelf, onMoveBook, showBook }: Props) => {
   let noReadData = null;
   let noWantToReadData = null;
   let noCurrentlyReadingData = null;
@@ -63,7 +64,7 @@ export const Shelf = ({ shelf, onMoveBook }: Props) => {
         {noWantToReadData}
         {noCurrentlyReadingData}
         {shelf.books?.map((book) => (
-          <Book key={book.id} book={book} onMoveBook={onMoveBook} />
+          <Book key={book.id} book={book} onMoveBook={onMoveBook} showBook={showBook} />
         ))}
       </div>
     </div>

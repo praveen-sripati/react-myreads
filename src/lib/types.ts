@@ -41,3 +41,7 @@ export interface TypeShelves {
   read: TypeShelf;
   loading: boolean;
 }
+
+export interface showBookState {
+  book: TypeBook | null;
+}

@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from 'react-router-dom';
 import { Layout, Input, Affix, Spin, Button } from 'antd';
 import './App.css';
-import { TypeBook, TypeShelves } from './lib/types';
+import { TypeBook, TypeShelves, showBookState } from './lib/types';
 import { update, getAll } from './BooksAPI';
 import { Shelf } from './sections/Shelf/Shelf';
 import { SearchList } from './sections/Search/SearchList';
+import { BookPage } from './sections/BookPage/BookPage';
 import {
   GithubOutlined,
   LinkedinFilled,
@@ -21,6 +28,10 @@ function App() {
     wantToRead: { shelfName: 'Want To Read', books: null },
     read: { shelfName: 'Read', books: null },
     loading: true,
+  });
+
+  const [showBookState, setShowBookState] = useState<showBookState>({
+    book: null,
   });
 
   useEffect(() => {
@@ -61,6 +72,10 @@ function App() {
     getAllBooks();
   }, []);
 
+  const showBook = (book: TypeBook) => {
+    setShowBookState({ book });
+  };
+
   return (
     <Router>
       <Layout className="container layout">
@@ -84,9 +99,21 @@ function App() {
                 <Spin size="large" className="spinner" />
               ) : (
                 <div>
-                  <Shelf shelf={state.currentlyReading} onMoveBook={moveBook} />
-                  <Shelf shelf={state.wantToRead} onMoveBook={moveBook} />
-                  <Shelf shelf={state.read} onMoveBook={moveBook} />
+                  <Shelf
+                    shelf={state.currentlyReading}
+                    onMoveBook={moveBook}
+                    showBook={showBook}
+                  />
+                  <Shelf
+                    shelf={state.wantToRead}
+                    onMoveBook={moveBook}
+                    showBook={showBook}
+                  />
+                  <Shelf
+                    shelf={state.read}
+                    onMoveBook={moveBook}
+                    showBook={showBook}
+                  />
                 </div>
               )}
               <Link to="/search">
@@ -107,20 +134,23 @@ function App() {
             </Content>
           </Route>
           <Route exact path="/search">
-            <Content className="content">
-              <SearchList />
-            </Content>
+            <SearchList />
+          </Route>
+          <Route exact path="/book">
+            <BookPage book={showBookState.book} />
           </Route>
         </Switch>
-        <Footer className="footer-author-description">
-          <span>Created by Praveen Sripati </span>
-          <a href="https://github.com/praveen-sripati" target="blank">
-            <GithubOutlined className="footer-author-description__icon" />
-          </a>
-          <a href="https://in.linkedin.com/in/praveen-sripati" target="blank">
-            <LinkedinFilled className="footer-author-description__icon" />
-          </a>
-        </Footer>
+        <Affix>
+          <Footer className="footer-author-description">
+            <span>Created by Praveen Sripati </span>
+            <a href="https://github.com/praveen-sripati" target="blank">
+              <GithubOutlined className="footer-author-description__icon" />
+            </a>
+            <a href="https://in.linkedin.com/in/praveen-sripati" target="blank">
+              <LinkedinFilled className="footer-author-description__icon" />
+            </a>
+          </Footer>
+        </Affix>
       </Layout>
     </Router>
   );

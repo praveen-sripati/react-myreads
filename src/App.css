@@ -84,6 +84,36 @@ body,
   border: 1px solid darkgray;
 }
 
+.book-page-content {
+  margin: 0px auto;
+  padding: 50px 50px;
+  min-height: 85vh;
+}
+
+.book-page-layout {
+  display: flex;
+  flex-direction: row;
+  max-width: 700px;
+}
+
+.book-page-content-img {
+  width: 300px;
+  height: 400px;
+  background-position: center;
+}
+
+.book-page-details {
+  display: flex;
+  flex-flow: column wrap;
+  max-width: 450px;
+  padding: 0 25px;
+}
+
+.book-page-details-label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .footer-author-description {
   display: flex;
   flex-flow: row wrap;
