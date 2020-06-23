@@ -37,7 +37,7 @@ export const BookPage = ({ book }: Props) => {
           <img
             className="book-page-content-img"
             src={book?.imageLinks.smallThumbnail}
-            alt="book-image"
+            alt={book?.title}
           />
           <div className="book-page-details">
             <Title level={2}>{book?.title}</Title>
