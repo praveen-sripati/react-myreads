@@ -91,7 +91,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Layout className="container layout">
         <div className="wrapper">
           <Affix className="header-affix">
