@@ -87,7 +87,6 @@ function App() {
   const searchBooks = async (query: string) => {
     const searchedBooks = await search(query);
     setSearchState({ query: searchState.query, books: searchedBooks });
-    console.log(searchedBooks);
   };
 
   return (
