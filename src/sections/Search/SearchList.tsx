@@ -21,7 +21,7 @@ export const SearchList = ({
 }: Props) => {
   const emptyState = (
     <div className="empty-state__no-search">
-      <img src={noSearchEmptyState} />
+      <img alt="Empty State Holder" src={noSearchEmptyState} />
     </div>
   );
 
@@ -60,7 +60,6 @@ export const SearchList = ({
           ) : (
             emptyState
           )}
-          {/* {typeof(searchState.books) === typeof({}) || searchState.books === undefined ? <h2>No Results</h2> : <h2>Results</h2>} */}
         </div>
       )}
     </Content>

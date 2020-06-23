@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Card, Button, Menu, Dropdown } from 'antd';
 import { DownCircleFilled } from '@ant-design/icons';
 import { TypeBook } from '../../../lib/types';
@@ -71,7 +71,11 @@ export const Book = ({ book, onMoveBook, showBook }: Props) => {
           className="book-title-bottom book-description"
           title={book.title}
           description={
-            book.subtitle ? book.subtitle : (book.description ? book.description.slice(0, 50): null)
+            book.subtitle
+              ? book.subtitle
+              : book.description
+              ? book.description.slice(0, 50)
+              : null
           }
         ></Meta>
         {/* <span className="book-author-text-color">{book.authors[0]}</span> */}
@@ -89,6 +93,14 @@ export const Book = ({ book, onMoveBook, showBook }: Props) => {
   );
 
   return (
-  <div>{clickCard.isClicked ? <Redirect push to={`/book/${book.id}`}>{card}</Redirect> : card}</div>
+    <div>
+      {clickCard.isClicked ? (
+        <Redirect push to={`/book/${book.id}`}>
+          {card}
+        </Redirect>
+      ) : (
+        card
+      )}
+    </div>
   );
 };
