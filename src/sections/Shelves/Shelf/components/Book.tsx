@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Card, Button, Menu, Dropdown } from 'antd';
 import { DownCircleFilled } from '@ant-design/icons';
-import { TypeBook } from '../../../lib/types';
+import { TypeBook } from '../../../../lib/types';
 
 interface Props {
   book: TypeBook;
@@ -65,7 +65,7 @@ export const Book = ({ book, onMoveBook, showBook }: Props) => {
         bordered
         hoverable
         style={{ width: 240 }}
-        cover={<img alt="example" src={book.imageLinks.thumbnail} />}
+        cover={<img alt="example" src={book.imageLinks ? book.imageLinks.thumbnail:"https://via.placeholder.com/240x300"} />}
       >
         <Meta
           className="book-title-bottom book-description"

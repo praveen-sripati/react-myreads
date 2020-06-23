@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { Layout, Input, Affix, Spin, Button } from 'antd';
+import { Layout, Input, Spin, Button } from 'antd';
 import './App.css';
 import { TypeBook, TypeShelves, ShowBookState, SearchState } from './lib/types';
 import { update, getAll } from './BooksAPI';
-import { Shelf } from './sections/Shelf/Shelf';
+import { LayoutHeader } from './sections/Header/Header';
+import { LayoutFooter } from './sections/Footer/Footer';
 import { SearchList } from './sections/Search/SearchList';
-import { search } from './BooksAPI';
 import { BookPage } from './sections/BookPage/BookPage';
 import {
-  GithubOutlined,
-  LinkedinFilled,
   PlusOutlined,
 } from '@ant-design/icons';
+import { Shelves } from './sections/Shelves/Shelves';
 
-const { Header, Content, Footer } = Layout;
-const { Search } = Input;
+
+const { Content } = Layout;
+// const { Search } = Input;
 
 function App() {
   //App State
@@ -29,12 +29,6 @@ function App() {
   //Book Page State
   const [showBookState, setShowBookState] = useState<ShowBookState>({
     book: null,
-  });
-
-  //Search State
-  const [searchState, setSearchState] = useState<SearchState>({
-    query: '',
-    books: [],
   });
 
   const getAllBooks = async () => {
@@ -79,59 +73,22 @@ function App() {
     setShowBookState({ book });
   };
 
-  const handleSearch = (event: any) => {
-    setSearchState({ query: event.target.value, books: [] });
-    searchBooks(searchState.query);
-  };
-
-  const searchBooks = async (query: string) => {
-    const searchedBooks = await search(query);
-    setSearchState({ query: searchState.query, books: searchedBooks });
-  };
-
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <Layout className="container layout">
         <div className="wrapper">
-          <Affix className="header-affix">
-            <Header className="header">
-              <Link to="/">
-                <p className="logo">MyReads</p>
-              </Link>
-              <Link to="/search" className="search-link">
-                <Search
-                  className="search"
-                  placeholder="search books here..."
-                  enterButton="Search"
-                  size="large"
-                  onChange={handleSearch}
-                ></Search>
-              </Link>
-            </Header>
-          </Affix>
           <Switch>
             <Route exact path="/">
+              <LayoutHeader />
               <Content className="content">
                 {state.loading ? (
                   <Spin size="large" className="spinner" />
                 ) : (
-                  <div>
-                    <Shelf
-                      shelf={state.currentlyReading}
-                      onMoveBook={moveBook}
-                      showBook={showBook}
-                    />
-                    <Shelf
-                      shelf={state.wantToRead}
-                      onMoveBook={moveBook}
-                      showBook={showBook}
-                    />
-                    <Shelf
-                      shelf={state.read}
-                      onMoveBook={moveBook}
-                      showBook={showBook}
-                    />
-                  </div>
+                  <Shelves
+                    state={state}
+                    onMoveBook={moveBook}
+                    showBook={showBook}
+                  />
                 )}
                 <Link to="/search">
                   <Button
@@ -152,26 +109,17 @@ function App() {
             </Route>
             <Route exact path="/search">
               <SearchList
-                searchState={searchState}
                 onMoveBook={moveBook}
                 onShowBook={showBook}
               />
             </Route>
             <Route exact path="/book/:id">
+              <LayoutHeader />
               <BookPage book={showBookState.book} />
             </Route>
           </Switch>
         </div>
-
-        <Footer className="footer-author-description">
-          <span>Created by Praveen Sripati </span>
-          <a href="https://github.com/praveen-sripati" target="blank">
-            <GithubOutlined className="footer-author-description__icon" />
-          </a>
-          <a href="https://in.linkedin.com/in/praveen-sripati" target="blank">
-            <LinkedinFilled className="footer-author-description__icon" />
-          </a>
-        </Footer>
+        <LayoutFooter />
       </Layout>
     </Router>
   );

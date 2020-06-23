@@ -1,8 +1,8 @@
 import React from 'react';
 import { Typography, Divider, Empty } from 'antd';
 import { Book } from './components/Book';
-import { TypeShelf, TypeBook } from '../../lib/types';
-import NoBooksPlaceholder from '../../icons/No_books.png';
+import { TypeShelf, TypeBook } from '../../../lib/types';
+import NoBooksPlaceholder from '../../../icons/No_books.png';
 
 const { Title, Text } = Typography;
 

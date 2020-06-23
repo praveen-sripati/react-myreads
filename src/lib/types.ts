@@ -47,6 +47,9 @@ export interface ShowBookState {
 }
 
 export interface SearchState{
-  query: '';
+  query: string;
+}
+
+export interface FilteredBooks{
   books: TypeBook[];
 }

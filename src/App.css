@@ -21,7 +21,7 @@ body,
   background-color: white;
   min-height: 100%;
   display: flex;
-  flex-direction: column;;
+  flex-direction: column;
 }
 
 .wrapper {
@@ -29,9 +29,8 @@ body,
 }
 
 .header {
-  display: flex;
-  flex-direction: row;
-  background-color: white;
+  text-align: center;
+  background-color: #fafafa;
   -webkit-box-shadow: 0 2px 8px #f0f1f2;
   -moz-box-shadow: 0 2px 8px #f0f1f2;
   box-shadow: 0 2px 8px #f0f1f2;
@@ -42,11 +41,35 @@ body,
 }
 
 .logo {
-  margin: 0 20px;
   font-size: 24px;
   font-weight: bolder;
   color: #1890ff;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.search[type='text'] {
+  max-width: 900px;
+  width: 420px;
+  height: 40px;
+  border: 2px solid #ccc;
+  background-color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: width 0.4s ease-in-out;
+  color: black;
+  background-image: url(./icons/searchicon.png);
+  background-position: 10px 8px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+}
+
+.search[type='text']:focus {
+  width: 100%;
+}
+
+/* .search-header {
+  display: flex;
+  justify-content: left;
 }
 
 .search {
@@ -57,7 +80,7 @@ body,
 .search-link {
   display: flex;
   min-width: 500px;
-}
+} */
 
 .content {
   grid-area: main;
@@ -87,7 +110,7 @@ body,
 }
 
 .ant-card-body {
-  background-color: #92EE91;
+  background-color: #92ee91;
   height: 100px;
 }
 
@@ -132,7 +155,7 @@ body,
   font-weight: bold;
 }
 
-.footer-author-description{
+.footer-author-description {
   grid-area: footer;
   display: flex;
   flex-flow: row wrap;
@@ -224,13 +247,15 @@ h2.ant-typography,
   text-align: center;
 }
 
-.open-search {
+*/
+
+/* .open-search {
   position: fixed;
   right: 25px;
   bottom: 25px;
-}
+} */
 
-.open-search button {
+/* .open-search button {
   display: block;
   width: 50px;
   height: 50px;
