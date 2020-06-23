@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Layout, Button, Affix, Input } from 'antd';
+import React, { useState } from 'react';
+import { Layout, Button, Affix } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import noSearchEmptyState from '../../icons/searchEmptyState.png';

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { Layout, Input, Spin, Button } from 'antd';
+import { Layout, Spin, Button } from 'antd';
 import './App.css';
-import { TypeBook, TypeShelves, ShowBookState, SearchState } from './lib/types';
+import { TypeBook, TypeShelves, ShowBookState } from './lib/types';
 import { update, getAll } from './BooksAPI';
 import { LayoutHeader } from './sections/Header/Header';
 import { LayoutFooter } from './sections/Footer/Footer';
@@ -15,7 +15,6 @@ import { Shelves } from './sections/Shelves/Shelves';
 
 
 const { Content } = Layout;
-// const { Search } = Input;
 
 function App() {
   //App State

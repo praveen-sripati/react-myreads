@@ -52,6 +52,7 @@ export const Book = ({ book, onMoveBook, showBook }: Props) => {
 
   const menu = (
     <Menu onClick={handleMenuClick}>
+      <Menu.Item key="0" disabled style={{fontWeight: "bolder"}}>Move To 👇 </Menu.Item>
       <Menu.Item key="1">Currently Reading</Menu.Item>
       <Menu.Item key="2">Want to Reading</Menu.Item>
       <Menu.Item key="3">Read</Menu.Item>
