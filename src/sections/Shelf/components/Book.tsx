@@ -72,7 +72,7 @@ export const Book = ({ book, onMoveBook, showBook }: Props) => {
           title={book.title}
           description={
             book.subtitle
-              ? book.subtitle
+              ? book.subtitle.length >= 50 ? book.subtitle.slice(0, 45).concat("...") : book.subtitle
               : book.description
               ? book.description.slice(0, 45).concat("...")
               : null
