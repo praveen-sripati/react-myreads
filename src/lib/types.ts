@@ -48,4 +48,5 @@ export interface ShowBookState {
 
 export interface SearchState{
   query: '';
+  books: TypeBook[];
 }
