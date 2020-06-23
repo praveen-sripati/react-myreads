@@ -8,11 +8,9 @@ import { LayoutHeader } from './sections/Header/Header';
 import { LayoutFooter } from './sections/Footer/Footer';
 import { SearchList } from './sections/Search/SearchList';
 import { BookPage } from './sections/BookPage/BookPage';
-import {
-  PlusOutlined,
-} from '@ant-design/icons';
+import { NotFound} from './sections/NotFound/NotFound'
+import { PlusOutlined } from '@ant-design/icons';
 import { Shelves } from './sections/Shelves/Shelves';
-
 
 const { Content } = Layout;
 
@@ -32,8 +30,6 @@ function App() {
 
   const getAllBooks = async () => {
     const books: TypeBook[] = await getAll();
-
-    console.log(books);
     const currentlyReadingData: TypeBook[] = [];
     const wantToReadData: TypeBook[] = [];
     const readData: TypeBook[] = [];
@@ -107,14 +103,14 @@ function App() {
               </Content>
             </Route>
             <Route exact path="/search">
-              <SearchList
-                onMoveBook={moveBook}
-                onShowBook={showBook}
-              />
+              <SearchList onMoveBook={moveBook} onShowBook={showBook} />
             </Route>
             <Route exact path="/book/:id">
               <LayoutHeader />
               <BookPage book={showBookState.book} />
+            </Route>
+            <Route>
+               <NotFound />
             </Route>
           </Switch>
         </div>
