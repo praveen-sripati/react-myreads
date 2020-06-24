@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/react-myreads/static/css/main.863dbb74.chunk.css",
+    "main.js": "/react-myreads/static/js/main.1333dc17.chunk.js",
+    "main.js.map": "/react-myreads/static/js/main.1333dc17.chunk.js.map",
+    "runtime-main.js": "/react-myreads/static/js/runtime-main.a3c3121c.js",
+    "runtime-main.js.map": "/react-myreads/static/js/runtime-main.a3c3121c.js.map",
+    "static/css/2.f47422e6.chunk.css": "/react-myreads/static/css/2.f47422e6.chunk.css",
+    "static/js/2.0490a7fd.chunk.js": "/react-myreads/static/js/2.0490a7fd.chunk.js",
+    "static/js/2.0490a7fd.chunk.js.map": "/react-myreads/static/js/2.0490a7fd.chunk.js.map",
+    "index.html": "/react-myreads/index.html",
+    "precache-manifest.dd362cdf36813ffd5e36ff5e20627f7f.js": "/react-myreads/precache-manifest.dd362cdf36813ffd5e36ff5e20627f7f.js",
+    "service-worker.js": "/react-myreads/service-worker.js",
+    "static/css/2.f47422e6.chunk.css.map": "/react-myreads/static/css/2.f47422e6.chunk.css.map",
+    "static/css/main.863dbb74.chunk.css.map": "/react-myreads/static/css/main.863dbb74.chunk.css.map",
+    "static/js/2.0490a7fd.chunk.js.LICENSE.txt": "/react-myreads/static/js/2.0490a7fd.chunk.js.LICENSE.txt",
+    "static/media/No_books.png": "/react-myreads/static/media/No_books.04ae4764.png",
+    "static/media/searchEmptyState.png": "/react-myreads/static/media/searchEmptyState.706ab192.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a3c3121c.js",
+    "static/css/2.f47422e6.chunk.css",
+    "static/js/2.0490a7fd.chunk.js",
+    "static/css/main.863dbb74.chunk.css",
+    "static/js/main.1333dc17.chunk.js"
+  ]
+}
