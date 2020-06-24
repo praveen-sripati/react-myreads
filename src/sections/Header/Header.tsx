@@ -8,7 +8,7 @@ export const LayoutHeader = () => {
   return (
     <Affix className="header-affix">
       <Header className="header">
-        <Link to="/">
+        <Link to={`${process.env.PUBLIC_URL}/`}>
           <span className="logo">MyReads</span>
         </Link>
       </Header>

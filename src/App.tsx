@@ -8,7 +8,7 @@ import { LayoutHeader } from './sections/Header/Header';
 import { LayoutFooter } from './sections/Footer/Footer';
 import { SearchList } from './sections/Search/SearchList';
 import { BookPage } from './sections/BookPage/BookPage';
-import { NotFound} from './sections/NotFound/NotFound'
+import { NotFound } from './sections/NotFound/NotFound';
 import { PlusOutlined } from '@ant-design/icons';
 import { Shelves } from './sections/Shelves/Shelves';
 
@@ -69,11 +69,11 @@ function App() {
   };
 
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <Layout className="container layout">
         <div className="wrapper">
           <Switch>
-            <Route exact path="/">
+            <Route exact path={`${process.env.PUBLIC_URL}/`}>
               <LayoutHeader />
               <Content className="content">
                 {state.loading ? (
@@ -85,7 +85,7 @@ function App() {
                     showBook={showBook}
                   />
                 )}
-                <Link to="/search">
+                <Link to={`${process.env.PUBLIC_URL}/search`}>
                   <Button
                     style={{
                       position: 'fixed',
@@ -102,15 +102,15 @@ function App() {
                 </Link>
               </Content>
             </Route>
-            <Route exact path="/search">
+            <Route exact path={`${process.env.PUBLIC_URL}/search`}>
               <SearchList onMoveBook={moveBook} onShowBook={showBook} />
             </Route>
-            <Route exact path="/book/:id">
+            <Route exact path={`${process.env.PUBLIC_URL}/book/:id`}>
               <LayoutHeader />
               <BookPage book={showBookState.book} />
             </Route>
             <Route>
-               <NotFound />
+              <NotFound />
             </Route>
           </Switch>
         </div>

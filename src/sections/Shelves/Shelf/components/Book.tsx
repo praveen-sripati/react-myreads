@@ -79,7 +79,6 @@ export const Book = ({ book, onMoveBook, showBook }: Props) => {
               : null
           }
         ></Meta>
-        {/* <span className="book-author-text-color">{book.authors[0]}</span> */}
         <Dropdown overlay={menu}>
           <Button
             className="book-card-move-button"
@@ -96,7 +95,7 @@ export const Book = ({ book, onMoveBook, showBook }: Props) => {
   return (
     <div>
       {clickCard.isClicked ? (
-        <Redirect push to={`/book/${book.id}`}>
+        <Redirect push to={`${process.env.PUBLIC_URL}/book/${book.id}`}>
           {card}
         </Redirect>
       ) : (

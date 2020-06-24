@@ -46,7 +46,7 @@ export const SearchList = ({ onShowBook, onMoveBook }: Props) => {
     <div>
       <Affix className="header-affix">
         <Header className="search-header header">
-          <Link to="/search" className="search-link">
+          <Link to={`${process.env.PUBLIC_URL}/search`} className="search-link">
             <input
               className="search"
               type="text"
@@ -58,7 +58,7 @@ export const SearchList = ({ onShowBook, onMoveBook }: Props) => {
         </Header>
       </Affix>
       <Content className="content search-content">
-        <Link to="/">
+        <Link to={`${process.env.PUBLIC_URL}/`}>
           <Button
             style={{
               position: 'fixed',

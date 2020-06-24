@@ -19,7 +19,7 @@ export const BookPage = ({ book }: Props) => {
     <Content className="book-page-content ">
       {book ? (
         <div className="book-page-layout">
-          <Link to="/">
+          <Link to={`${process.env.PUBLIC_URL}/`}>
             <Button
               style={{
                 position: 'fixed',
